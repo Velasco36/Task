@@ -1,0 +1,15 @@
+body {
+    background-image: url('./../../img/background2.png');
+    background-size: 100vw 160vh;
+    background-repeat: no-repeat;
+
+  }
+
+.list {
+    margin-top: 80px;
+flex: 1;
+text-align: center;
+color: white;
+text-shadow: 0 0 5px rgba(0, 40, 240, 0.7), 0 0 10px rgba(0, 40, 240, 0.5), 0 0 15px rgba(0, 40, 240, 0.3);
+
+}
