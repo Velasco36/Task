@@ -1,0 +1,75 @@
+.background {
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    height: 65vh;
+    border-radius: 150px;
+    background-image: url('../../../img/img3.jpg');
+    background-size: cover;
+    padding: 5%;
+    display: flex;
+   
+}
+
+/* card */
+.card-container{
+    width: 300px;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px -5px;
+    transition: 0.3s;
+    animation: ease-in;
+    background-color: white;
+    margin: 20px;
+    height: 70%;
+
+   
+}
+.card-container:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 15px 0px;;
+}
+.image-container img{
+    overflow: hidden;
+    height: 200px;
+}
+
+.card-conten {
+    margin: 1rem;
+    margin-top: 0.5rem;
+}
+
+h3,p {
+    margin: 2;
+    padding: 0;
+}
+
+.card-title {
+    margin-bottom: 0.5rem;
+    text-align: start;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+
+}
+
+.btn button {
+    padding: 0.5 rem;
+    background-color: white;
+    border: none;
+    transition: 0.2s;
+    margin-bottom: 0.5 rem;
+    border-radius: 3px;
+}
+
+.btn button:hover {
+    background: rgba(27, 156, 252, 0.1);
+    transform: scale(1);
+}
+
+a {
+    text-transform: uppercase;
+    color: #1b9cfc;
+    text-decoration: none;
+    font-weight: bold;
+}
