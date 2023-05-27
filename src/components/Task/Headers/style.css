@@ -1,0 +1,25 @@
+.barra {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    height: 9vh;
+    background-color: #252850;
+    background: linear-gradient(2deg, rgba(0, 40, 240, 1), rgba(0, 0, 0, 0.2));
+    box-shadow: 0px 4px 10px rgb(0, 240, 240);
+}
+
+.letter {
+    display: flex;
+    text-align: center;
+    color: white;
+    text-shadow: '0 0 5px rgba(0, 40, 240, 0.7), 0 0 10px rgba(0, 40, 240, 0.5), 0 0 15px rgba(0, 40, 240, 0.3)',;
+    margin-left: 40vh;
+}
+
+.menu {
+    cursor: pointer; /* Se corrige el valor de 'apoiner' a 'pointer' */
+    justify-content: flex-end; /* 'end' se cambia a 'flex-end' */
+    text-align: end; /* 'end' se cambia a 'right' */
+     /* Se eliminan las comillas alrededor del valor numérico */
+  }
