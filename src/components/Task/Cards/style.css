@@ -1,14 +1,4 @@
-.background {
-    margin-top: 10vh;
-    margin-bottom: 10vh;
-    height: 65vh;
-    border-radius: 150px;
-    background-image: url('../../../img/img3.jpg');
-    background-size: cover;
-    padding: 5%;
-    display: flex;
-   
-}
+
 
 /* card */
 .card-container{
@@ -18,14 +8,13 @@
     transition: 0.3s;
     animation: ease-in;
     background-color: white;
-    margin: 20px;
-    height: 70%;
-
-   
+    margin: 10px;
+    height: 70%;   
 }
 .card-container:hover {
     transform: scale(1.1);
     box-shadow: 0px 0px 15px 0px;;
+
 }
 .image-container img{
     overflow: hidden;
@@ -73,3 +62,35 @@ a {
     text-decoration: none;
     font-weight: bold;
 }
+
+
+/* style.css */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Define 3 columnas de igual tamaño */
+    grid-gap: 25px; /* Cambia el espacio entre las celdas de la grilla */
+    max-height: 400px; /* Altura máxima de la grilla */
+    overflow-y: auto; /* Agrega barra de desplazamiento vertical cuando se excede la altura */
+    
+}
+  
+  /* Estilos para los elementos de la grilla */
+  .grid-container > * {
+    background-color: #fafafa;
+    height: 100%;
+    margin-bottom: 10px; /* Aumenta la separación hacia abajo */
+    margin-left: 0px; /* Reduce la separación hacia los lados */
+    margin-right: 0px; /* Reduce la separación hacia los lados */
+  }
+  
+  .background {
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    border-radius: 150px;
+    background-image: url('../../../img/space.jpg');
+    background-size: cover;
+    padding: 5%;
+  
+  }
+  
