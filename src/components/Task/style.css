@@ -1,9 +1,9 @@
-body {
+.bg {
     background-image: url('./../../img/background2.png');
     background-size: 100vw 160vh;
     background-repeat: no-repeat;
 
-  }
+}
 
 .list {
     margin-top: 80px;
