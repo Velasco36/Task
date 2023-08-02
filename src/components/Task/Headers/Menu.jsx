@@ -1,14 +1,29 @@
-import React from 'react'
-//css grilla
+import React, { useState, useEffect } from "react";
+
+import MenuIcon from "@mui/icons-material/Menu";
+import "./style.css";
 
 export function Menu() {
+  const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    if (!isOpen) {
+      document.querySelector(".modal").classList.add("slide-out");
+    }
+  }, [isOpen]);
+
   return (
-    <div style={{ marginLeft: '20px',cursor: 'pointer'}}>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,200" />
-    <span class="material-symbols-outlined">
-      Menu
-    </span>
-    </div>
-    
-  )
+    <>
+      <MenuIcon className="menu" onClick={() => setIsOpen(true)} />
+
+      <div className={isOpen ? "modal" : "modal slide-out"}>
+        {isOpen && (
+          <div className="overlay">
+            <div className="modal">
+              <button onClick={() => setIsOpen(false)}>Cerrar</button>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
+  );
 }
