@@ -12,8 +12,10 @@ export function Task() {
         Task List
       </h1>
       <ButtonTask />
-     
+      <div className="top">
       <ListCard />
+      </div>
+
     </div>
   );
 }

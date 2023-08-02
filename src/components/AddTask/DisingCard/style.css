@@ -4,14 +4,7 @@
   box-shadow: border-box;
 }
 
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(27deg, #023f7b 50%, #020c58 50%);
-}
+
 
 #colorPicker {
   appearance: none;
@@ -184,10 +177,10 @@ input[type="color"]::-webkit-color-swatch-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     justify-content: center;
     margin-top: 170px;
-    margin-right: auto; 
+    margin-right: auto;
     background-color:transparent;
     padding: 20px;
     width: 300px;
@@ -198,7 +191,7 @@ input[type="color"]::-webkit-color-swatch-wrapper {
     border-color: #080505;
     /* background: transparent; */
   }
-  
+
   .modal {
     display: flex;
     flex-direction: column;
@@ -206,7 +199,7 @@ input[type="color"]::-webkit-color-swatch-wrapper {
     margin-left: auto;
     border-color: #f8f8f8;
     border: solid 2px #fff;
-  
+
     /* Resto de estilos */
   }
 .transparent-form {
@@ -215,16 +208,16 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 
 .button {
     display: block;
-    margin: auto;    
+    margin: auto;
     background: transparent;
     color: #f8f8f8;
     cursor: pointer;
-  
-  
-  }
-  
 
-  
+
+  }
+
+
+
 
 #button-modal {
     border-radius: 1;
