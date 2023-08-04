@@ -1,0 +1,243 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  .form-label {
+    color: #540000;
+  }
+}
+
+#colorPicker {
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-left: 10px;
+  background: none;
+  border-radius: 50%;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+.color-sample {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.icon-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-left: -40px;
+}
+
+.right-icon {
+  margin-left: 10px;
+  cursor: pointer;
+  color: #000000;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  width: 30%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  background-color: #f9fafb; /* Agregado un color de fondo */
+  padding: 20px; /* Agregado un padding para mejor aspecto */
+}
+
+.form-title {
+
+  color: #1f2937;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* ...otros estilos... */
+.input-container {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #d1d5db;
+  background-color: #f3f4f6;
+  color: #111827;
+  font-size: 1rem;
+}
+
+/* Estilos del placeholder flotante */
+.floating-label {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+  margin-left: 10%;
+  color: #6b7280;
+  pointer-events: none;
+  transition: 0.2s ease-out;
+}
+
+/* Estilos del contenedor para animar el placeholder */
+.input-container input:focus + .floating-label,
+.input-container textarea:focus + .floating-label,
+.input-container input:not(:placeholder-shown) + .floating-label,
+.input-container textarea:not(:placeholder-shown) + .floating-label {
+  top: 0;
+  font-size: 0.75rem;
+  color: #3b82f6;
+  background-color: #fff;
+  padding: 0 0.5rem;
+}
+
+.form-input {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #d1d5db;
+  background-color: #f3f4f6;
+  color: #124bc7;
+  font-size: 1rem;
+}
+
+.form-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #3b82f6; /* Cambiado el color de fondo del botón */
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem; /* Aumentado el tamaño de la fuente */
+  font-weight: 600;
+  transition: background-color 0.2s ease; /* Agregada transición suave al color de fondo */
+}
+
+/* Estilos cuando se coloca el cursor sobre el botón */
+.form-button:hover {
+  background-color: #2563eb; /* Cambiado el color de fondo del botón al hacer hover */
+}
+
+.text {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 25px;
+}
+
+.border {
+  border: 1px solid #d1d5db; /* Cambiado el color del borde para mayor contraste */
+  border-radius: 4px;
+  background-color: #f3f4f6; /* Cambiado el color de fondo para mayor contraste */
+  color: #1d4ed8;
+  display: block;
+  margin: auto;
+  width: 75%;
+  padding-left: 10px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1rem; /* Aumentado el tamaño de la fuente */
+  outline: none;
+}
+
+.border:focus {
+  outline: none;
+  border-color: #2563eb; /* Cambiado el color del borde cuando tiene el foco */
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5); /* Agregado un sombreado al tener el foco */
+}
+
+.title {
+  height: 40px;
+  color: #1f2937; /* Cambiado el color para mayor contraste */
+
+}
+
+.description {
+  height: 120px;
+  color: #1f2937;
+}
+
+::placeholder {
+  font-size: 1rem; /* Aumentado el tamaño de la fuente */
+  color: #6b7280; /* Cambiado el color para mayor contraste */
+}
+
+input[type="color"] {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  /* background: transparent; */
+}
+
+.transparent-form {
+  background-color: transparent;
+}
+
+.button {
+  display: block;
+  margin: auto;
+  background: transparent;
+  color: #f8f8f8;
+  cursor: pointer;
+
+}
+
+#button-modal {
+  border-radius: 1;
+  width: 100%;
+  height: 20%;
+}
+
+
