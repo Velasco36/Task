@@ -1,3 +1,8 @@
 body {
-    background-color: rgb(2, 25, 62);
+  font-family: Arial, sans-serif;
+
+}
+
+.background {
+  background-color: rgb(236, 236, 236) ;
 }

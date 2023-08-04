@@ -1,16 +1,18 @@
 import React from 'react'
 // import { Headers } from '../Task/Headers/Headers'
-import { Disingcard } from './DisingCard/Disingcard'
+import { CardDesing } from './CardDesign/CardDesign'
+import "./style.css"
+
 
 export default function AddTask() {
   return (
     <>
-    <div>
+    <div className='background'>
 
-    <Disingcard />
+    <CardDesing />
     </div>
-  
+
     </>
-  
+
   )
 }
