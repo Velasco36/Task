@@ -93,12 +93,4 @@ a {
     margin-right: 0px; /* Reduce la separación hacia los lados */
   }
 
-  .background {
-    margin-top: 10vh;
-    margin-bottom: 10vh;
-    border-radius: 150px;
-    background-image: url('../../../img/space.jpg');
-    background-size: cover;
-    padding: 5%;
-
-  }
+ 
