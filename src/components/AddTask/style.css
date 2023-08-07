@@ -4,5 +4,12 @@ body {
 }
 
 .background {
-  background-color: rgb(236, 236, 236) ;
+
+  background-image: url('./../../img/bg.jpg');
+  background-size: cover;
+
+  background-repeat: no-repeat;
+
+  background-attachment: fixed;
 }
+
