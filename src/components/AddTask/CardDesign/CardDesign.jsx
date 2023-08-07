@@ -7,6 +7,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { Card } from "./card";
 
 import dayjs from "dayjs";
 
@@ -16,7 +17,7 @@ export function CardDesing() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const [isDisable, setisDisable] = useState(false);
+  const [isDisable, setisDisable] = useState(true);
   const [notification, setNotification] = useState(null);
 
   const handleNotificationClose = () => {
@@ -41,7 +42,7 @@ export function CardDesing() {
   };
 
   const [date, setDate] = useState(null);
-  const [color, setColor] = useState("#000000");
+  const [color, setColor] = useState("#ffff");
   const [value, setValue] = useState(dayjs("2022-04-17T15:30"));
 
   const handleChangeColor = (e) => {
@@ -63,12 +64,13 @@ export function CardDesing() {
       )}
 
       <div className="container">
-        <div className="modal">
+        <div className="modal" id="aling-modal">
           <label className="text">Color:</label>
           <input
             type="color"
             id="colorPicker"
             value={color}
+            
             onChange={handleChangeColor}
           />
           <label className="text">Date:</label>
@@ -93,7 +95,7 @@ export function CardDesing() {
               />
             </DemoContainer>
           </LocalizationProvider>
-          <button className="button submit-button" type="submit">
+          <button type="submit" className="modal-button">
             Submit
           </button>
         </div>
@@ -102,7 +104,7 @@ export function CardDesing() {
           <br />
           <br />
           <div className="icon-container">
-            <AccessAlarm onClick={() => handleDate()} />
+            <AccessAlarm onClick={() => handleDate()}  />
             <AnchorOutlinedIcon
               className="right-icon"
               onClick={() => handlePinup()}
@@ -110,40 +112,14 @@ export function CardDesing() {
           </div>
           <br />
           <p className="text">Add Task</p>
-
-          <form className="login-form" onSubmit={handleSubmit}>
-            <br />
-            <div className="">
-              <div className="input-container">
-                <input
-                  className="title border"
-                  type="text"
-                  placeholder=" "
-                  id="title"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-                <span className="floating-label">Title</span>
-              </div>
-              <br />
-              <div className="input-container">
-                <textarea
-                  className="description border"
-                  placeholder=" "
-                  id="description"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-                <span className="floating-label">Description</span>
-              </div>
-
-              <button className="button" type="submit">
-                Submit
-              </button>
-            </div>
-            <br />
-            <br />
-          </form>
+          <Card
+            handleSubmit={handleSubmit}
+            description={description}
+            setDescription={setDescription}
+            setTitle={setTitle}
+            title={title}
+            showButton={true}
+          />
         </div>
 
         {isOpen && (
