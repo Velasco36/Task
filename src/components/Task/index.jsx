@@ -8,11 +8,13 @@ export function Task() {
   return (
     <div className="bg">
       <Headers />
-      <h1 className="list" >
-        Task List
-      </h1>
+
       <ButtonTask />
       <div className="top">
+
+      <h1 className="list" >
+        List
+      </h1>
       <ListCard />
       </div>
 
