@@ -1,31 +1,29 @@
-import React from "react";
+// ListCard.js
+import React, { useState } from "react";
 import "./style.css";
 import { Card } from "./Card";
-import img2 from "./../../../img/imag2.png";
-import AnchorIcon from '@mui/icons-material/Anchor';
+
 export default function ListCard() {
-  let text = `Lorem ipsum dolor sit amet consectetur adipisicing elit.
-  Rem blanditiis at perspiciatis nesciunt laborum? Quo rerum consequuntur
-  quaerat dolor inventore natus veniam eius saepe nobis id! Impedit est exce`;
+  const [cards, setCards] = useState([]);
+
+  const addCard = () => {
+    setCards((prevCards) => [
+      ...prevCards,
+      {
+        title: "task",
+        body: "",
+      },
+    ]);
+  };
+
   return (
-  <>
-    <AnchorIcon className="icons" />
-    <div className=" grid-container ">
-
-      <Card title="title" imageUrl={img2} body={text} />
-      <Card title="title" imageUrl={img2} body={text} />
-      <Card title="title" imageUrl={img2} body={text} />
-      <Card title="title" imageUrl={img2} body={text} />
+    <div className="grid-container">
+      {cards.length === 0 && <div className="empty-placeholder"></div>}
+      {cards.map((card, index) => (
+        <Card key={index} title={card.title} body={card.body} />
+      ))}
+      <button className="add-card-btn" onClick={addCard}>Add Card</button>
     </div>
-
-    <div className=" grid-container ">
-
-      <Card title="title" imageUrl={img2} body={text} />
-      <Card title="title" imageUrl={img2} body={text} />
-      <Card title="title" imageUrl={img2} body={text} />
-      <Card title="title" imageUrl={img2} body={text} />
-    </div>
-  </>
-
   );
 }
+
