@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
-
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { isClosed } from "../../../redux/actions";
 import MenuIcon from "@mui/icons-material/Menu";
 import "./style.css";
 
 export function Menu() {
-  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+  const isOpen = useSelector((state) => state.isOpen);
   useEffect(() => {
     if (!isOpen) {
       document.querySelector(".modal").classList.add("slide-out");
@@ -13,13 +15,13 @@ export function Menu() {
 
   return (
     <>
-      <MenuIcon className="menu" onClick={() => setIsOpen(true)} />
+      <MenuIcon className="menu" onClick={() => dispatch(isClosed(true))} />
 
       <div className={isOpen ? "modal" : "modal slide-out"}>
         {isOpen && (
           <div className="overlay">
             <div className="modal">
-              <button onClick={() => setIsOpen(false)}>Cerrar</button>
+              <button onClick={() => dispatch(isClosed(false))}>Cerrar</button>
             </div>
           </div>
         )}

@@ -1,7 +1,13 @@
 import React from 'react'
+import {useSelector, useDispatch} from "react-redux"
+import { updateDescription, updateTitle } from '../../../redux/actions'
 import './style.css'
 
-export function Card({showButton,handleSubmit, title, setTitle, description, setDescription}) {
+export function Card({ showButton, handleSubmit }) {
+  const title = useSelector((state) => state.title)
+  const description = useSelector((state) => state.description)
+
+  const dispatch = useDispatch();
 
   return (
     <form className="form" id='form' onSubmit={handleSubmit}>
@@ -11,7 +17,7 @@ export function Card({showButton,handleSubmit, title, setTitle, description, set
           type="text"
           value={title}
           placeholder=''
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => dispatch(updateTitle((e.target.value)))}
         />
         <span className="floating-label">Title</span>
       </div>
@@ -21,7 +27,7 @@ export function Card({showButton,handleSubmit, title, setTitle, description, set
           className="description border"
           value={description}
           placeholder=''
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={(e) => dispatch(updateDescription((e.target.value)))}
         />
         <span className="floating-label">Description</span>
       </div>

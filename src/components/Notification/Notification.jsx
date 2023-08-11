@@ -1,20 +1,23 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setIsVisible } from "../../redux/actions";
 import "./style.css";
 
 export function Notification({ message, type, onClose }) {
-  const [isVisible, setIsVisible] = useState(true);
+  const dispatch = useDispatch();
+  const isVisible = useSelector((state) => state.isVisible);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setIsVisible(false);
+      dispatch(setIsVisible(false));
       onClose();
     }, 3000);
 
     return () => clearTimeout(timeout);
-  }, [onClose]);
+  }, [dispatch, onClose]);
 
   const handleDismiss = () => {
-    setIsVisible(false);
+    dispatch(setIsVisible(false));
     onClose();
   };
 

@@ -1,19 +1,20 @@
 // ListCard.js
-import React, { useState } from "react";
-import "./style.css";
+import { useSelector, useDispatch } from "react-redux";
 import { Card } from "./Card";
+import { setCards } from "../../../redux/actions";
+import "./style.css";
 
 export default function ListCard() {
-  const [cards, setCards] = useState([]);
+  const dispatch = useDispatch();
+  const cards = useSelector((state) => state.cards);
 
   const addCard = () => {
-    setCards((prevCards) => [
-      ...prevCards,
-      {
-        title: "task",
-        body: "",
-      },
-    ]);
+    const newCard = {
+      title: "task",
+      body: "",
+    };
+    
+    dispatch(setCards([...cards, newCard]));
   };
 
   return (

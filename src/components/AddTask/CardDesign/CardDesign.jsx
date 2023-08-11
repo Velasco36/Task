@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { AccessAlarm } from "@mui/icons-material";
 import AnchorOutlinedIcon from "@mui/icons-material/AnchorOutlined";
 import { Notification } from "../../Notification/Notification";
@@ -7,32 +7,35 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { addColor, addNotification, isClosed, setDate, setIsDisable, setValue } from "../../../redux/actions";
 import { Card } from "./card";
-
-import dayjs from "dayjs";
-
 import "./style.css";
 
 export function CardDesing() {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
-  const [isDisable, setisDisable] = useState(true);
-  const [notification, setNotification] = useState(null);
+  const dispatch = useDispatch()
+  const title = useSelector((state) => state.title);
+  const description = useSelector((state) => state.description);
+  const notification = useSelector((state) => state.notification);
+  const color = useSelector((state) => state.color);
+  const isOpen = useSelector((state) => state.isOpen);
+  const date = useSelector((state) => state.date);
+  const value = useSelector((state) => state.value);
+  const isDisable = useSelector((state) => state.isDisable);
+
 
   const handleNotificationClose = () => {
-    setNotification(null);
+    dispatch(addNotification((null)));
   };
 
   const handlePinup = () => {
-    setNotification({
+    dispatch(addNotification({
       type: "success",
       message: "Se ha Fijado  correctamente",
-    });
+    }));
   };
   const handleDate = () => {
-    setNotification({ type: "success", message: "Añade una fecha" });
-    setisDisable(!isDisable);
+    dispatch(addNotification({ type: "success", message: "Añade una fecha" }));
+    dispatch(setIsDisable(!isDisable));
   };
 
   const handleSubmit = (e) => {
@@ -41,16 +44,13 @@ export function CardDesing() {
     console.log("Description:", description);
   };
 
-  const [date, setDate] = useState(null);
-  const [color, setColor] = useState("#ffff");
-  const [value, setValue] = useState(dayjs("2022-04-17T15:30"));
 
   const handleChangeColor = (e) => {
     const formBody = document.querySelector("#form-container");
     if (formBody) {
       formBody.style.backgroundColor = e.target.value;
     }
-    setColor(e.target.value);
+    dispatch(addColor((e.target.value)));
   };
 
   return (
@@ -91,7 +91,7 @@ export function CardDesing() {
                 label="Choose Hours"
                 disabled={isDisable}
                 value={value}
-                onChange={(newValue) => setValue(newValue)}
+                onChange={(newValue) => dispatch(setValue(newValue))}
               />
             </DemoContainer>
           </LocalizationProvider>
@@ -114,10 +114,6 @@ export function CardDesing() {
           <p className="text">Add Task</p>
           <Card
             handleSubmit={handleSubmit}
-            description={description}
-            setDescription={setDescription}
-            setTitle={setTitle}
-            title={title}
             showButton={true}
           />
         </div>
@@ -134,7 +130,7 @@ export function CardDesing() {
                 />
                 <br />
 
-                <button onClick={() => setIsOpen(false)}>Cerrar</button>
+                <button onClick={() => dispatch(isClosed(false))}>Cerrar</button>
               </div>
             </div>
           </div>
