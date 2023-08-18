@@ -8,8 +8,18 @@ import {
     SET_VALUE_ACTION,
     SET_IS_DISABLE_ACTION,
     SET_IS_VISIBLE_ACTION,
-    SET_CARDS_ACTION
+    SET_CARDS_ACTION,
+    ADD_TASK_ACTION
  } from "./actionTypes";
+
+
+
+export const addTask = (task) => {
+    return {
+        type: ADD_TASK_ACTION,
+        payload: task
+    }
+}
 
 export const updateTitle = (title) => {
     return {

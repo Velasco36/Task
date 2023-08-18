@@ -7,7 +7,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { addColor, addNotification, isClosed, setDate, setIsDisable, setValue } from "../../../redux/actions";
+import { addColor, addNotification, isClosed, setDate, setIsDisable, setValue, addTask} from "../../../redux/actions";
 import { Card } from "./card";
 import "./style.css";
 
@@ -21,7 +21,9 @@ export function CardDesing() {
   const date = useSelector((state) => state.date);
   const value = useSelector((state) => state.value);
   const isDisable = useSelector((state) => state.isDisable);
+  const Tasks = useSelector((state) => state.tasks);
 
+  console.log( Tasks)
 
   const handleNotificationClose = () => {
     dispatch(addNotification((null)));
@@ -38,11 +40,6 @@ export function CardDesing() {
     dispatch(setIsDisable(!isDisable));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Title:", title);
-    console.log("Description:", description);
-  };
 
 
   const handleChangeColor = (e) => {
@@ -52,6 +49,15 @@ export function CardDesing() {
     }
     dispatch(addColor((e.target.value)));
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const task  = { title, description }
+
+    dispatch(addTask(task))
+  };
+
 
   return (
     <>
@@ -70,7 +76,7 @@ export function CardDesing() {
             type="color"
             id="colorPicker"
             value={color}
-            
+
             onChange={handleChangeColor}
           />
           <label className="text">Date:</label>

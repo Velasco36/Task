@@ -1,29 +1,20 @@
 // ListCard.js
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Card } from "./Card";
-import { setCards } from "../../../redux/actions";
 import "./style.css";
 
 export default function ListCard() {
-  const dispatch = useDispatch();
-  const cards = useSelector((state) => state.cards);
 
-  const addCard = () => {
-    const newCard = {
-      title: "task",
-      body: "",
-    };
-    
-    dispatch(setCards([...cards, newCard]));
-  };
+  const Tasks = useSelector((state) => state.tasks);
+
 
   return (
     <div className="grid-container">
-      {cards.length === 0 && <div className="empty-placeholder"></div>}
-      {cards.map((card, index) => (
-        <Card key={index} title={card.title} body={card.body} />
+      {Tasks.length === 0 && <div className="empty-placeholder"></div>}
+      {Tasks.map((Task, index) => (
+        <Card key={index} title={Task.title} body={Task.description}/>
       ))}
-      <button className="add-card-btn" onClick={addCard}>Add Card</button>
+      {/* <button className="add-card-btn" onClick={addCard}>Add Card</button> */}
     </div>
   );
 }

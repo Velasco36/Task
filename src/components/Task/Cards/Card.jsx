@@ -1,11 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import AnchorIcon from "@mui/icons-material/Anchor";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import "./style.css";
 
 export const Card = ({ title, body }) => {
+  const color = useSelector((state) => state.color)
+
   return (
-    <div className="card-container">
+    <div className="card-container" style={{backgroundColor: color}}>
       <div className="icon-container">
         <AnchorIcon className="icons" />
         <EditOutlinedIcon className="edit-icons" />

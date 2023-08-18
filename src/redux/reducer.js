@@ -10,7 +10,9 @@ import {
     SET_VALUE_ACTION,
     SET_IS_DISABLE_ACTION,
     SET_IS_VISIBLE_ACTION,
-    SET_CARDS_ACTION
+    SET_CARDS_ACTION,
+    ADD_TASK_ACTION
+
     } from "./actionTypes";
 
 const initialState = {
@@ -23,11 +25,19 @@ const initialState = {
     date: null,
     value: dayjs("2022-04-17T15:30"),
     isDisable: true,
-    isVisible: true
+    isVisible: true,
+    tasks: []
 }
 
 export const reducer = (state = initialState, { type, payload }) => {
     switch (type){
+
+        case ADD_TASK_ACTION:
+            return {
+                ...state,
+                tasks: [...state.tasks, payload]
+            }
+
         case UPDATE_TITLE_ACTION:
             return {
                 ...state,

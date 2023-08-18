@@ -9,6 +9,7 @@ export function Card({ showButton, handleSubmit }) {
 
   const dispatch = useDispatch();
 
+
   return (
     <form className="form" id='form' onSubmit={handleSubmit}>
       <div className="input-container">
@@ -37,6 +38,7 @@ export function Card({ showButton, handleSubmit }) {
           id="button"
           className='button'
           type="submit"
+
         >
           Submit
         </button>

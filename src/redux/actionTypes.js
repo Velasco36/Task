@@ -8,3 +8,5 @@ export const SET_VALUE_ACTION = 'SET_VALUE';
 export const SET_IS_DISABLE_ACTION = 'SET_IS_DISABLE';
 export const SET_IS_VISIBLE_ACTION = 'SET_IS_VISIBLE';
 export const SET_CARDS_ACTION = 'SET_CARDS';
+export const ADD_TASK_ACTION = 'ADD_TASK';
+
