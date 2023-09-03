@@ -60,6 +60,7 @@ export const reducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 color: payload
+              
             }
 
         case IS_OPEN_ACTION:

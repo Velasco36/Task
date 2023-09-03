@@ -16,6 +16,7 @@ export function Card({ showButton, handleSubmit }) {
         <input
           className="title border"
           type="text"
+          id="color-title"
           value={title}
           placeholder=''
           onChange={(e) => dispatch(updateTitle((e.target.value)))}
