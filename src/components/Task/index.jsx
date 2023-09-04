@@ -7,8 +7,8 @@ import ListCard from "./Cards/Background";
 export function Task() {
   return (
 
-    
-    <div className="bg">
+
+    <div id="bg">
       <Headers />
 
       <ButtonTask />
