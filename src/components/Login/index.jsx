@@ -1,26 +1,53 @@
 import React, { useState } from "react";
 import "./index.css";
+import axios from "axios";
+
 
 export function Login() {
-  const [email, setEmail] = useState("");
+  const [nick_name, setnick_name] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  const handlenick_nameChange = (e) => {
+    setnick_name(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    // Aquí puedes agregar la lógica de autenticación, como Firebase Authentication
+  const handleSubmitButton = async () => {
+    if (nick_name === "" || password === "") {
+      // Tu lógica de validación aquí
+      console.log("Por favor complete todos los campos requeridos.");
+      return;
+    }
 
-    // Ejemplo de cómo imprimir los datos en la consola
-    console.log("Email:", email);
+    console.log("nick_name:", nick_name);
     console.log("Contraseña:", password);
+
+    try {
+
+     const user = {
+      nick_name: nick_name,
+      password: password,
+      }
+      console.log(user)
+      const response = await axios.post('http://localhost:3333/login', user);
+
+      console.log(response);
+      // const token = response.data.token;
+      // // Guardar el token en localStorage
+      // window.localStorage.setItem("token", token);
+
+      // Redirigir después del inicio de sesión exitoso
+      console.log("Inicio de sesión exitoso. Redireccionando...");
+      // Puedes usar react-router-dom para redirigir a una página diferente si es necesario.
+    } catch (error) {
+      console.log("Error en la solicitud de inicio de sesión:", error);
+      // Manejar errores de inicio de sesión aquí, por ejemplo, mostrar un mensaje de error al usuario.
+      console.log(error)
+    }
   };
 
   return (
@@ -30,17 +57,17 @@ export function Login() {
           <br />
           <br />
           <h2 className="text">Iniciar sesión</h2>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmitButton}>
             <div className="form-group">
               <br />
               <br />
-             
+
               <input
-                type="email"
+                type="text"
                 placeholder="example@correo.com"
-                id="email"
-                value={email}
-                onChange={handleEmailChange}
+                id="nick_name"
+                value={nick_name}
+                onChange={handlenick_nameChange}
                 required
               />
             </div>
