@@ -1,82 +1,32 @@
 import React, { useState } from "react";
-import "./index.css";
 import clientAxios from "../../config/axios";
+import "./index.css";
 
 export function Login() {
-  const [nick_name, setnick_name] = useState("");
+  const [nickName, setNickName] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); // Nuevo estado para mostrar mensajes de error
 
-
-  const handlenick_nameChange = (e) => {
-    setnick_name(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-  const handleSubmitButton = async () => {
-    if (nick_name === "" || password === "") {
-      setError("Por favor complete todos los campos requeridos.");
+  const handleSubmit = async () => {
+    if (nickName === "" || password === "") {
+      alert("Por favor complete los campos requeridos.");
       return;
     }
 
-
-
-    const data = JSON.stringify({
-      "nick_name": nick_name,
-      "password": password
-    });
-
     try {
-      const response = await clientAxios.post('login', data);
-      console.log(response)
+      const response = await clientAxios.post("login", {
+        nick_name: nickName,
+        password: password,
+      });
 
-    }catch(e){
-      console.log(e)
-      
+      if (response.data) {
+        // en este punto guardas tu token en local storage: response.data.token
+        // y redireccionas la vista al home
+        console.log(response.data.token);
+      }
+    } catch (e) {
+      console.log(e);
     }
-
-
-
-
-
-  }
-
-
-  // const handleSubmitButton = async () => {
-  //   if (nick_name === "" || password === "") {
-  //     // Tu lógica de validación aquí
-  //     console.log("Por favor complete todos los campos requeridos.");
-  //     return;
-  //   }
-
-  //   console.log("nick_name:", nick_name);
-  //   console.log("Contraseña:", password);
-
-  //   try {
-
-  //    const user = {
-  //     nick_name: nick_name,
-  //     password: password,
-  //     }
-  //     console.log(user)
-  //     const response = await axios.post('http://localhost:3333/login', user);
-
-  //     console.log(response);
-  //     // const token = response.data.token;
-  //     // // Guardar el token en localStorage
-  //     // window.localStorage.setItem("token", token);
-
-  //     // Redirigir después del inicio de sesión exitoso
-  //     console.log("Inicio de sesión exitoso. Redireccionando...");
-  //     // Puedes usar react-router-dom para redirigir a una página diferente si es necesario.
-  //   } catch (error) {
-  //     console.log("Error en la solicitud de inicio de sesión:", error);
-  //     // Manejar errores de inicio de sesión aquí, por ejemplo, mostrar un mensaje de error al usuario.
-  //     console.log(error)
-  //   }
-  // };
+  };
 
   return (
     <div id="background">
@@ -85,7 +35,7 @@ export function Login() {
           <br />
           <br />
           <h2 className="text">Iniciar sesión</h2>
-          <form onSubmit={handleSubmitButton}>
+          <div>
             <div className="form-group">
               <br />
               <br />
@@ -94,27 +44,26 @@ export function Login() {
                 type="text"
                 placeholder="example@correo.com"
                 id="nick_name"
-                value={nick_name}
-                onChange={handlenick_nameChange}
+                value={nickName}
+                onChange={(e) => setNickName(e.target.value)}
                 required
               />
             </div>
             <br />
             <br />
             <div className="form-group">
-
               <input
                 type="password"
                 placeholder="your password"
                 id="password"
                 value={password}
-                onChange={handlePasswordChange}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
             <br />
-            <button type="submit">Iniciar sesión</button>
-          </form>
+            <button onClick={handleSubmit}>Iniciar sesión</button>
+          </div>
           <br />
           <div className="social-login">
             <button>Iniciar sesión con Google</button>
