@@ -11,7 +11,8 @@ import {
     SET_IS_DISABLE_ACTION,
     SET_IS_VISIBLE_ACTION,
     SET_CARDS_ACTION,
-    ADD_TASK_ACTION
+    ADD_TASK_ACTION,
+    User_Nick_Name_Action
 
     } from "./actionTypes";
 
@@ -26,11 +27,18 @@ const initialState = {
     value: dayjs("2022-04-17T15:30"),
     isDisable: true,
     isVisible: true,
-    tasks: []
+    tasks: [],
+    users: ""
 }
 
 export const reducer = (state = initialState, { type, payload }) => {
     switch (type){
+
+        case User_Nick_Name_Action:
+            return {
+                ...state,
+                users: payload
+            }
 
         case ADD_TASK_ACTION:
             return {
@@ -60,7 +68,7 @@ export const reducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 color: payload
-              
+
             }
 
         case IS_OPEN_ACTION:

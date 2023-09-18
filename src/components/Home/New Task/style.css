@@ -61,3 +61,24 @@
   max-width: 250px; /* Establece un ancho máximo para el contenedor del botón */
   padding: 10px;
 }
+
+
+.logout {
+ justify-content: end;
+ margin-top: 45px;
+ margin-left: 100px;
+
+}
+
+.colorLogout {
+  color: #fff;
+  height: 40px;
+}
+
+
+.large-icon {
+  width: 2em; /* Ajusta el tamaño según tus preferencias */
+  height: 6em;
+  color: #fff;
+  cursor: pointer;
+}

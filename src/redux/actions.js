@@ -9,11 +9,17 @@ import {
     SET_IS_DISABLE_ACTION,
     SET_IS_VISIBLE_ACTION,
     SET_CARDS_ACTION,
-    ADD_TASK_ACTION
+    ADD_TASK_ACTION,
+    User_Nick_Name_Action
  } from "./actionTypes";
 
 
-
+ export const User_name = (user) => {
+    return {
+        type: User_Nick_Name_Action,
+        payload: user
+    }
+}
 export const addTask = (task) => {
     return {
         type: ADD_TASK_ACTION,

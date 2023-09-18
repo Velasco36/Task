@@ -1,7 +1,7 @@
 import React from 'react'
 import { CardDesing } from './CardDesign/CardDesign'
 import "./style.css"
-import {Headers} from "./../Task/Headers/Headers"
+import {Headers} from "./../Home/Headers/Headers"
 
 
 export default function AddTask() {

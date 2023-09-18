@@ -4,6 +4,9 @@ import { updateDescription, updateTitle } from '../../../redux/actions'
 import './style.css'
 
 export function Card({ showButton, handleSubmit }) {
+
+  
+
   const title = useSelector((state) => state.title)
   const description = useSelector((state) => state.description)
 
@@ -11,7 +14,7 @@ export function Card({ showButton, handleSubmit }) {
 
 
   return (
-    <form className="form" id='form' onSubmit={handleSubmit}>
+    <form className="form" id='fom'>
       <div className="input-container">
         <input
           className="title border"
@@ -39,6 +42,7 @@ export function Card({ showButton, handleSubmit }) {
           id="button"
           className='button'
           type="submit"
+          onClick={handleSubmit}
 
         >
           Submit

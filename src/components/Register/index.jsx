@@ -1,77 +1,97 @@
 import React, { useState } from "react";
 import "./index.css";
+import clientAxios from "../../config/axios";
+
 export function Register() {
-  const [formData, setFormData] = useState({
-    nombre: "",
-    email: "",
-    password: "",
-    repeatPassword: "",
-  });
+  const [nickname, setNickName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatpassword] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí puedes agregar la lógica para manejar el envío del formulario.
+
+    if (nickname === "" || password === "") {
+      alert("Por favor complete los campos requeridos.");
+      return;
+    }
+    try {
+      const response = await clientAxios.post("users", {
+        email,
+        nick_name: nickname,
+        password
+      });
+
+      if (response.data) {
+       console.log(response)
+       console.log('data')
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
     <div id="l">
       <div className="registro">
-        <form onSubmit={handleSubmit} className="formulario">
-          <h2>Registro como Profesional</h2>
+        <div className="formulario">
+          <br />
+          <br />
 
-          <div className="campo">
+          <h2>Registro como Profesional</h2>
+          <br />
+          <br />
+
+          <div className="input-container">
             <input
-              id="nombre"
+              name="nickName"
+              id="color-title"
               placeholder=""
-              value={formData.nombre}
-              onChange={handleChange}
+              value={nickname}
+              onChange={(e) => setNickName(e.target.value)}
             />
-            <label htmlFor="nombre">Nombre</label>
+            <span className="floating-label">Name</span>
           </div>
 
-          <div className="campo">
+          <div className=" input-container">
             <input
               type="email"
               id="email"
               placeholder=""
               name="email"
-              value={formData.email}
-              onChange={handleChange}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
-            <label htmlFor="email">Email</label>
+            <span className="floating-label">Email</span>
           </div>
-          <div className="campo">
+          <div className="input-container">
             <input
               type="password"
               id="password"
               placeholder=""
               name="password"
-              value={formData.password}
-              onChange={handleChange}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <label htmlFor="password">Contraseña</label>
+            <span className="floating-label">Password</span>
           </div>
-          <div className="campo">
+          <div className="input-container">
             <input
               type="password"
               id="repeatPassword"
               placeholder=""
               name="repeatPassword"
-              value={formData.repeatPassword}
-              onChange={handleChange}
+              value={repeatPassword}
+              onChange={(e) => setRepeatpassword(e.target.value)}
             />
-            <label htmlFor="repeatPassword">Repetir Contraseña</label>
+            <span className="floating-label">Repeat Password</span>
           </div>
-          <button type="submit">Registrarse</button>
-        </form>
+          <button onClick={handleSubmit}>Registrarse</button>
+          <p>
+              Already have an account?
+              <a href="/login">Login here</a>
+            </p>
+        </div>
       </div>
     </div>
   );

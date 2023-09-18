@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import clientAxios from "../../config/axios";
+import { useSelector, useDispatch } from "react-redux";
+import { User_name } from "../../redux/actions";
 import "./index.css";
 
 export function Login() {
+  const dispatch = useDispatch()
+  const Users = useSelector((state) => state.users);
   const [nickName, setNickName] = useState("");
   const [password, setPassword] = useState("");
+  const [load, setLoad] = useState(false);
+  console.log(Users)
 
   const handleSubmit = async () => {
+    const user  = { nickName}
     if (nickName === "" || password === "") {
       alert("Por favor complete los campos requeridos.");
       return;
     }
-
+    setLoad(true);
     try {
       const response = await clientAxios.post("login", {
         nick_name: nickName,
@@ -19,13 +26,19 @@ export function Login() {
       });
 
       if (response.data) {
-        // en este punto guardas tu token en local storage: response.data.token
-        // y redireccionas la vista al home
+        const token = response.data.token;
+        window.localStorage.setItem("token", token);
+        window.localStorage.setItem("user", nickName);
+        
+        setTimeout(() => {
+          window.location.replace("/");
+        }, 3000);
         console.log(response.data.token);
       }
     } catch (e) {
       console.log(e);
     }
+    dispatch(User_name(user))
   };
 
   return (
@@ -61,14 +74,25 @@ export function Login() {
                 required
               />
             </div>
+            {load && (
+              <div className="containerloader">
+                <span className="loader"></span>
+              </div>
+            )}
+
             <br />
             <button onClick={handleSubmit}>Iniciar sesión</button>
           </div>
           <br />
+
           <div className="social-login">
             <button>Iniciar sesión con Google</button>
             <button>Iniciar sesión con Facebook</button>
           </div>
+          <p className="link">
+              No tienes cuenta?
+              <a href="/register">registrate aqui</a>
+            </p>
         </div>
       </div>
     </div>

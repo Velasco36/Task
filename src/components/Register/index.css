@@ -97,3 +97,58 @@
   button:hover {
     background-color: #0056b3;
   }
+
+  .floating-label {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+    margin-left: -4%;
+    color: #6b7280;
+    pointer-events: none;
+    transition: 0.2s ease-out;
+
+  }
+
+
+  .input-container {
+    position: relative;
+    margin-bottom: 1.5rem;
+
+  }
+  .input-container input:focus + .floating-label,
+  .input-container textarea:focus + .floating-label,
+  .input-container input:not(:placeholder-shown) + .floating-label,
+  .input-container textarea:not(:placeholder-shown) + .floating-label {
+    top: 0;
+    font-size: 0.75rem;
+    color: #3b82f6;
+    background-color: #fff;
+    padding: 0 0.5rem;
+  }
+
+
+  #color-title {
+    color: black
+  }
+  /* Estilos para el párrafo */
+  p {
+    font-size: 16px;
+    color: #333; /* Color de texto */
+    margin-bottom: 10px; /* Espacio inferior */
+  }
+
+  /* Estilos para el enlace */
+  a {
+    text-decoration: none; /* Quitar subrayado del enlace */
+    color: #007bff; /* Color del enlace */
+    font-weight: bold; /* Negrita */
+  }
+
+  /* Estilos para el enlace al pasar el mouse por encima */
+  a:hover {
+    color: #5d00ff;
+  }
