@@ -16,7 +16,7 @@ export function Register() {
       return;
     }
     try {
-      const response = await clientAxios.post("users", {
+      const response = await clientAxios.post("user", {
         email,
         nick_name: nickname,
         password
