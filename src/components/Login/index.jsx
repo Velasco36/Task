@@ -19,17 +19,15 @@ export function Login() {
       return;
     }
     setLoad(true);
+    const data = {nick_name: nickName, password}
     try {
-      const response = await clientAxios.post("login", {
-        nick_name: nickName,
-        password: password,
-      });
+
+      const response = await clientAxios.post("login",data);
 
       if (response.data) {
         const token = response.data.token;
         window.localStorage.setItem("token", token);
-        window.localStorage.setItem("user", nickName);
-        
+
         setTimeout(() => {
           window.location.replace("/");
         }, 3000);
