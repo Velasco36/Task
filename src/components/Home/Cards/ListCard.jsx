@@ -32,14 +32,11 @@ export default function ListCard() {
     fetchData();
   }, [token]);
 
-  console.log(Tasks)
-
-
   return (
     <div className="grid-container">
       {Tasks.length === 0 && <div className="empty-placeholder"></div>}
       {Tasks.map((Task, index) => (
-        <Card key={index} title={Task.name} body={Task.description}/>
+        <Card key={index} title={Task.name} body={Task.description} color={Task.color}/>
       ))}
 
     </div>
