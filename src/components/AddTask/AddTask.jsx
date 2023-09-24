@@ -1,5 +1,5 @@
 import React from 'react'
-import { CardDesing } from './CardDesign/CardDesign'
+import { CardDesing } from './CardDesign/index'
 import "./style.css"
 import {Headers} from "./../Home/Headers/Headers"
 
