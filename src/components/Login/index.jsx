@@ -1,19 +1,17 @@
 import React, { useState } from "react";
 import clientAxios from "../../config/axios";
-import { useSelector, useDispatch } from "react-redux";
-import { User_name } from "../../redux/actions";
+
+
 import "./index.css";
 
 export function Login() {
-  const dispatch = useDispatch()
-  const Users = useSelector((state) => state.users);
   const [nickName, setNickName] = useState("");
   const [password, setPassword] = useState("");
   const [load, setLoad] = useState(false);
-  console.log(Users)
+
 
   const handleSubmit = async () => {
-    const user  = { nickName}
+   
     if (nickName === "" || password === "") {
       alert("Por favor complete los campos requeridos.");
       return;
@@ -36,7 +34,7 @@ export function Login() {
     } catch (e) {
       console.log(e);
     }
-    dispatch(User_name(user))
+
   };
 
   return (
