@@ -19,7 +19,6 @@ export default function ListCard() {
           });
           const tasksData  = response.data.data.tasks
 
-        console.log(tasksData)
           setTask_back(tasksData)
 
         } else {
@@ -36,7 +35,7 @@ export default function ListCard() {
     <div className="grid-container">
       {Tasks.length === 0 && <div className="empty-placeholder"></div>}
       {Tasks.map((Task, index) => (
-        <Card key={index} title={Task.name} body={Task.description} color={Task.color}/>
+        <Card key={index} id={Task.id} title={Task.name} body={Task.description} color={Task.color} />
       ))}
 
     </div>

@@ -35,21 +35,35 @@
 
 .icon-container {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 0 10px;
+  align-items: center;
+  padding: 10px;
+  background-color: #1c03a8;
 }
 
-.icons {
-  font-size: 40px;
-  color: white;
+.left, .right {
+  margin-left: 25px;
 }
 
-.edit-icons {
-  font-size: 24px;
-  color: white;
+.right.icons {
+  display: flex;
+  gap: 10px;
 }
 
+/* Estilos específicos para los íconos, suponiendo que sean elementos <svg> o <img> */
+.left img {
+  width: 24px;
+  height: 24px;
+}
+
+.right.icons img {
+  width: 20px;
+  height: 20px;
+}
+
+#icons {
+  color: #fff !important;
+}
 .text {
   margin: 0;
   margin-left: 10px;
