@@ -10,9 +10,16 @@ import {
     SET_IS_VISIBLE_ACTION,
     SET_CARDS_ACTION,
     ADD_TASK_ACTION,
-    ID_TASK_ACTION
+    ID_TASK_ACTION,
+    ANCHOR_TASK_ACTION
  } from "./actionTypes";
 
+ export const anchor_task = (state) => {
+    return {
+        type: ANCHOR_TASK_ACTION,
+        payload: state
+    }
+}
 
  export const Id_task = (id) => {
     return {
