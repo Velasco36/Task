@@ -17,6 +17,7 @@ import {
   setIsDisable,
   setValue,
   addTask,
+  anchor_task
 
 } from "../../../redux/actions";
 import { Card } from "./card";
@@ -35,7 +36,9 @@ export function CardDesing() {
   const isDisable = useSelector((state) => state.isDisable);
   const ID_task = useSelector((state) => state.id);
   const [load, setLoad] = useState(false);
+  const [anchor, setanchor] = useState('pending');
   const token = localStorage.getItem("token");
+  dispatch(anchor_task(anchor));
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,7 +48,7 @@ export function CardDesing() {
             headers: { Authorization: `Bearer ${token}` },
           });
 
-          const data = response.data; 
+          const data = response.data;
           console.log(data);
         } catch (error) {
           console.error("Error al obtener los datos:", error);
@@ -59,17 +62,28 @@ export function CardDesing() {
     fetchData();
   },);
 
-
   const handleNotificationClose = () => {
     dispatch(addNotification(null));
   };
   const handlePinup = () => {
-    dispatch(
-      addNotification({
-        type: "success",
-        message: "Se ha Fijado  correctamente",
-      })
-    );
+    if (anchor === "pending"){
+      dispatch(
+        addNotification({
+          type: "success",
+          message: "Se ha Fijado  correctamente anchor",
+        })
+      );
+      setanchor('anchored')
+    }else{
+        dispatch(
+          addNotification({
+            type: "success",
+            message: `Se ha desAnclado correctamente pending ${anchor}`,
+          })
+        );
+      
+        setanchor('pending')
+    }
   };
   const handleDate = () => {
     dispatch(addNotification({ type: "success", message: "Añade una fecha" }));
@@ -82,6 +96,7 @@ export function CardDesing() {
     }
     dispatch(addColor(e.target.value));
   };
+  console.log(anchor)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -99,7 +114,7 @@ export function CardDesing() {
     const data = {
       name: title,
       description: description,
-      state: "pending",
+      state: anchor,
       color: color,
       limitAt: "2023-08-24T19:05:13.519-04:00",
     };
@@ -164,15 +179,17 @@ export function CardDesing() {
         <div className="form-container" id="form-container">
           <br />
           <br />
-          <div className="icon-container">
-            <AccessAlarm onClick={() => handleDate()} />
+          <div className="icon-container" id="color">
+            <AccessAlarm style={{ color: 'white'}} onClick={() => handleDate()} />
+            <p id="text">Add Task</p>
             <AnchorOutlinedIcon
+               style={{ color : anchor==='anchored' ? 'red' : 'white' }}
               className="right-icon"
               onClick={() => handlePinup()}
             />
           </div>
           <br />
-          <p id="text">Add Task</p>
+
           <Card
             handleSubmit={handleSubmit}
             showButton={true}
