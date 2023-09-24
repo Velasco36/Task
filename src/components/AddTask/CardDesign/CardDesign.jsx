@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clientAxios from "../../../config/axios";
 import { useSelector, useDispatch } from "react-redux";
 import { AccessAlarm } from "@mui/icons-material";
@@ -17,11 +17,13 @@ import {
   setIsDisable,
   setValue,
   addTask,
+
 } from "../../../redux/actions";
 import { Card } from "./card";
 import "./style.css";
 
 export function CardDesing() {
+
   const dispatch = useDispatch();
   const title = useSelector((state) => state.title);
   const description = useSelector((state) => state.description);
@@ -31,9 +33,33 @@ export function CardDesing() {
   const date = useSelector((state) => state.date);
   const value = useSelector((state) => state.value);
   const isDisable = useSelector((state) => state.isDisable);
+  const ID_task = useSelector((state) => state.id);
   const [load, setLoad] = useState(false);
-
   const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (ID_task !== "") {
+        try {
+          const response = await clientAxios.get(`tasks/${ID_task}`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+
+          const data = response.data; 
+          console.log(data);
+        } catch (error) {
+          console.error("Error al obtener los datos:", error);
+        }
+
+      }else{
+        return
+      }
+    };
+
+    fetchData();
+  },);
+
+
   const handleNotificationClose = () => {
     dispatch(addNotification(null));
   };
