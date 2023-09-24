@@ -1,19 +1,18 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import AnchorIcon from "@mui/icons-material/Anchor";
-
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import "./style.css";
-import {useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Id_task } from "../../../redux/actions";
 import clientAxios from "../../../config/axios";
 
-
 export const Card = ({ title, body, color, id }) => {
   const dispatch = useDispatch()
-  const ID_task = useSelector((state) => state.id);
+
   const token = localStorage.getItem("token");
-  console.log(ID_task)
 
   const hableEdit = async () => {
     dispatch(Id_task(id))
@@ -27,6 +26,16 @@ export const Card = ({ title, body, color, id }) => {
       });
       console.log(response)
 
+      Swal.fire({
+        title: 'Alert!',
+        text: 'se ha eliminado correctamente',
+        icon: 'success',
+        // confirmButtonText: 'success'
+      })
+      setTimeout(() => {
+        window.location.replace("/");
+      }, 1000);
+
       console.log('elimidano correctamente');
     } catch (e) {
       console.error("Error al obtener los datos:", e);
@@ -36,15 +45,13 @@ export const Card = ({ title, body, color, id }) => {
     <div className="card-container" style={{ backgroundColor: color }}>
       <div className="icon-container" id="icons">
         <div className="letf">
-          <DeleteOutlineIcon  onClick={handleDeleteClick} />
+          <DeleteOutlineIcon style={{color: 'white'}} onClick={handleDeleteClick} />
         </div>
         <p className="text">Add Task</p>
-        <div className="right icons" >
-          <AnchorIcon   />
-
+        <div className="right " >
+          <AnchorIcon  style={{color: 'white'}}  />
         </div>
       </div>
-
       <div className="input-container">
         <div className="input-container">
           <input
