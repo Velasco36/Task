@@ -10,14 +10,14 @@ import {
     SET_IS_VISIBLE_ACTION,
     SET_CARDS_ACTION,
     ADD_TASK_ACTION,
-    User_Nick_Name_Action
+    ID_TASK_ACTION
  } from "./actionTypes";
 
 
- export const User_name = (user) => {
+ export const Id_task = (id) => {
     return {
-        type: User_Nick_Name_Action,
-        payload: user
+        type: ID_TASK_ACTION,
+        payload: id
     }
 }
 export const addTask = (task) => {

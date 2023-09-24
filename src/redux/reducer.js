@@ -12,7 +12,7 @@ import {
     SET_IS_VISIBLE_ACTION,
     SET_CARDS_ACTION,
     ADD_TASK_ACTION,
-    User_Nick_Name_Action
+    ID_TASK_ACTION
 
     } from "./actionTypes";
 
@@ -28,16 +28,16 @@ const initialState = {
     isDisable: true,
     isVisible: true,
     tasks: [],
-    users: ""
+    Id_task: ""
 }
 
 export const reducer = (state = initialState, { type, payload }) => {
     switch (type){
 
-        case User_Nick_Name_Action:
+        case ID_TASK_ACTION:
             return {
                 ...state,
-                users: payload
+                id: payload
             }
 
         case ADD_TASK_ACTION:
