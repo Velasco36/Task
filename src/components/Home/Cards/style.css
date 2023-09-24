@@ -1,0 +1,131 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  min-height: 70vh; /* Altura mínima a 70vh */
+  max-height: 70vh; /* Altura máxima a 70vh */
+  padding: 3%;
+  overflow-y: auto; /* Habilitar scroll vertical cuando el contenido desborda */
+
+}
+
+/* Estilos para el placeholder cuando no hay cartas */
+.empty-placeholder {
+  width: 100%;
+  height: 70vh; /* Ajustar la altura del placeholder */
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+/* Estilos para las tarjetas */
+.card-container {
+  width: 100%; /* Ajustar el ancho al 100% */
+  overflow: hidden;
+  box-shadow: 0px 0px 15px -5px;
+  transition: 0.3s;
+  background-color: white;
+  min-height: 200px; /* Altura mínima para las cartas */
+  border-radius: 5px;
+  position: relative;
+}
+
+.card-container:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 15px 0px;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #1c03a8;
+}
+
+.left, .right {
+  margin-left: 25px;
+}
+
+.right.icons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Estilos específicos para los íconos, suponiendo que sean elementos <svg> o <img> */
+.left img {
+  width: 24px;
+  height: 24px;
+}
+
+.right.icons img {
+  width: 20px;
+  height: 20px;
+}
+
+#icons {
+  color: #fff !important;
+}
+.text {
+  margin: 0;
+  margin-left: 10px;
+}
+
+.input-container {
+  margin: 1rem;
+}
+
+.title,
+.description {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.floating-label {
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background-color: white;
+  padding: 0 5px;
+  font-size: 14px;
+}
+
+/* Resto de tus estilos ... */
+.card-container {
+  height: 300px;
+}
+
+.grid-container:not(:empty) .empty-placeholder {
+  display: none;
+}
+
+
+.add-card-btn {
+  width: 150px;
+  height: 50px;
+  border: none;
+  border-radius: 40px;
+  background: linear-gradient(2deg, rgba(0, 0, 0, 0.8), rgba(18, 18, 18, 0.8));
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+}
+
+.add-card-btn:hover {
+  background: linear-gradient(2deg, rgba(238, 237, 237, 0.9), rgba(18, 18, 18, 0.9));
+  color: rgb(245, 240, 240);
+}
+
+.add-card-btn:active {
+  background: linear-gradient(2deg, rgb(1, 1, 1), rgba(18, 18, 18, 1));
+}
