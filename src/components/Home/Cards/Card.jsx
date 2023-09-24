@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { Id_task } from "../../../redux/actions";
 import clientAxios from "../../../config/axios";
 
-export const Card = ({ title, body, color, id }) => {
+export const Card = ({ title, body, color, id, state }) => {
   const dispatch = useDispatch()
 
   const token = localStorage.getItem("token");
@@ -49,7 +49,7 @@ export const Card = ({ title, body, color, id }) => {
         </div>
         <p className="text">Add Task</p>
         <div className="right " >
-          <AnchorIcon  style={{color: 'white'}}  />
+          <AnchorIcon  style={{ color : state==='anchored' ? 'red' : 'white' }}  />
         </div>
       </div>
       <div className="input-container">
