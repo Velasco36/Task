@@ -1,5 +1,5 @@
 // App.js
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import React from "react";
 import AddTask from "./components/AddTask/AddTask";
