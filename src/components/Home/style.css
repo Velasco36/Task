@@ -1,0 +1,32 @@
+#bg {
+  background-image: url("./../../img/bg.jpg");
+
+  background-size: cover;
+
+  background-repeat: no-repeat;
+
+  background-attachment: fixed;
+}
+
+.list {
+  margin-top: 80px;
+  flex: 1;
+  text-align: center;
+  color: rgb(251, 251, 251);
+  text-shadow: 0 0 5px rgba(221, 222, 227, 0.7), 0 0 10px rgba(87, 70, 70, 0.5),
+    0 0 15px rgba(0, 40, 240, 0.3);
+  justify-content: center;
+  margin-left: 50px;
+}
+.top {
+
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+
+  margin-right: 6vh;
+
+}
+.white {
+  background-color:  rgb(106, 27, 27);
+}

@@ -1,0 +1,73 @@
+/* style.css */
+/* Estilos para la notificación */
+
+
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  .notification {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #ccc;
+    color: #333;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    transition: top 0.5s ease;
+    animation: slideIn 0.5s ease;
+    z-index: 9999; /* Asegura que la notificación se coloque por encima de otros elementos */
+  }
+
+  .notification.closing {
+    animation: slideOut 0.5s ease;
+  }
+  .notification.success {
+    background-color: #4caf50; /* Color verde para notificaciones de éxito */
+    color: #fff; /* Texto en blanco para notificaciones de éxito */
+  }
+
+  .notification.error {
+    background-color: #f44336; /* Color rojo para notificaciones de error */
+    color: #fff; /* Texto en blanco para notificaciones de error */
+  }
+
+  .notification p {
+    margin: 0;
+    flex: 1; /* Ocupa todo el espacio restante en el contenedor */
+  }
+
+  .close-icon {
+    cursor: pointer; /* Cambia el cursor al pasar sobre el icono */
+    margin-left: 10px;
+    transition: color 0.2s;
+  }
+
+  .close-icon:hover {
+    color: #aaa;
+  }
+  .notification {
+    animation: slideIn 0.5s ease;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 14px;
+  }
