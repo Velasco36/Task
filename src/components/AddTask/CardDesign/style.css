@@ -151,10 +151,11 @@ textarea {
 
 #text {
   text-align: center;
-  font-size: 1.5rem;
+  margin-top: 10px;
+  font-size: 20px;
   font-weight: 600;
-  color: #1f2937;
-  margin-bottom: 25px;
+  color: #ffffff;
+
 }
 
 
@@ -277,3 +278,4 @@ input[type="color"]::-webkit-color-swatch-wrapper {
   margin-top: 10vh;
   border-radius: 10px;
 }
+
