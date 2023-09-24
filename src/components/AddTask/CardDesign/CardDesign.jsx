@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import clientAxios from "../../../config/axios";
 import { useSelector, useDispatch } from "react-redux";
 import { AccessAlarm } from "@mui/icons-material";
@@ -19,7 +19,6 @@ import {
   addTask,
 } from "../../../redux/actions";
 import { Card } from "./card";
-import axios from "axios";
 import "./style.css";
 
 export function CardDesing() {
@@ -32,37 +31,12 @@ export function CardDesing() {
   const date = useSelector((state) => state.date);
   const value = useSelector((state) => state.value);
   const isDisable = useSelector((state) => state.isDisable);
+  const [load, setLoad] = useState(false);
+
   const token = localStorage.getItem("token");
-  const user_name = localStorage.getItem("user");
-  const [userId, setUserId] = useState("");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (token) {
-          const response = await clientAxios.get("users", {
-            headers: { Authorization: `Bearer ${token}` },
-          });
-          console.log(response.data);
-          const get_user = response.data.filter(
-            (data) => data.nickName === user_name
-          );
-          const userId = get_user[0].id;
-          setUserId(userId);
-        } else {
-          console.log("No se encontró un token en el localStorage.");
-        }
-      } catch (e) {
-        console.error("Error al obtener los datos:", e);
-      }
-    };
-    fetchData();
-  }, [token, user_name]);
-
   const handleNotificationClose = () => {
     dispatch(addNotification(null));
   };
-
   const handlePinup = () => {
     dispatch(
       addNotification({
@@ -75,7 +49,6 @@ export function CardDesing() {
     dispatch(addNotification({ type: "success", message: "Añade una fecha" }));
     dispatch(setIsDisable(!isDisable));
   };
-
   const handleChangeColor = (e) => {
     const formBody = document.querySelector("#form-container");
     if (formBody) {
@@ -86,40 +59,35 @@ export function CardDesing() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (title === "" || description === "") {
+      dispatch(addNotification({ type: "error", message: "Por favor complete los campos requeridos" }));
+      return;
+    }
+    setTimeout(() => {
+      window.location.replace("/");
+    }, 3000);
+    dispatch(addNotification({ type: "success", message: "se ha agregado correctamente" }));
 
     const task = { title, description };
 
     const data = {
-      userId: userId,
       name: title,
       description: description,
-      state: "pendient",
-      color: "#fff",
+      state: "pending",
+      color: color,
       limitAt: "2023-08-24T19:05:13.519-04:00",
     };
 
-    const config = {
-      method: "post",
-      url: "http://localhost:3333/tasks",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      data: data,
-    };
-
+    setLoad(true);
     try {
-      console.log(token);
+      const response = await clientAxios.post("tasks", data, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
-      // const response = await clientAxios.post("tasks", data, {
-      //   headers: { Authorization: `Bearer ${token}` },
-      // });
-
-      const response = config
       console.log(response.data);
     } catch (e) {
       console.error("Error al obtener los datos:", e);
     }
-
     dispatch(addTask(task));
   };
 
@@ -164,9 +132,7 @@ export function CardDesing() {
               />
             </DemoContainer>
           </LocalizationProvider>
-          <button type="submit" className="modal-button">
-            Submit
-          </button>
+
         </div>
 
         <div className="form-container" id="form-container">
@@ -181,7 +147,12 @@ export function CardDesing() {
           </div>
           <br />
           <p id="text">Add Task</p>
-          <Card handleSubmit={handleSubmit} showButton={true} />
+          <Card
+            handleSubmit={handleSubmit}
+            showButton={true}
+            setLoad={false}
+            load={load}
+          />
         </div>
 
         {isOpen && (
