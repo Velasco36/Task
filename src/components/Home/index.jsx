@@ -2,9 +2,7 @@
 import { Headers } from "./Headers/Headers";
 import { ButtonTask } from "./New Task/ButtonTask";
 import "./style.css";
-import ListCard from "./Cards/Background";
-
-
+import ListCard from "./Cards/ListCard";
 
 export function Task() {
 
