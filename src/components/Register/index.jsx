@@ -21,6 +21,7 @@ export function Register() {
         nick_name: nickname,
         password
       });
+      window.location.replace("/login");
 
       if (response.data) {
        console.log(response)
