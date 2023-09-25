@@ -4,16 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { AccessAlarm } from "@mui/icons-material";
 import AnchorOutlinedIcon from "@mui/icons-material/AnchorOutlined";
 import { Notification } from "../../Notification/Notification";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { TimePicker } from "@mui/x-date-pickers/TimePicker";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
+
 import {
   addColor,
   addNotification,
   isClosed,
-  setDate,
   setIsDisable,
   setValue,
   addTask,
@@ -31,7 +29,6 @@ export function CardDesing() {
   const notification = useSelector((state) => state.notification);
   const color = useSelector((state) => state.color);
   const isOpen = useSelector((state) => state.isOpen);
-  const date = useSelector((state) => state.date);
   const value = useSelector((state) => state.value);
   const isDisable = useSelector((state) => state.isDisable);
   const ID_task = useSelector((state) => state.id);
@@ -39,6 +36,7 @@ export function CardDesing() {
   const [anchor, setanchor] = useState('pending');
   const token = localStorage.getItem("token");
   dispatch(anchor_task(anchor));
+  const fechaFormateada = value.format('YYYY-MM-DDTHH:mm:ss.SSSZ');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,7 +79,7 @@ export function CardDesing() {
             message: `Se ha desAnclado correctamente pending ${anchor}`,
           })
         );
-      
+
         setanchor('pending')
     }
   };
@@ -96,7 +94,6 @@ export function CardDesing() {
     }
     dispatch(addColor(e.target.value));
   };
-  console.log(anchor)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -116,7 +113,7 @@ export function CardDesing() {
       description: description,
       state: anchor,
       color: color,
-      limitAt: "2023-08-24T19:05:13.519-04:00",
+      limitAt: fechaFormateada,
     };
 
     setLoad(true);
@@ -154,26 +151,10 @@ export function CardDesing() {
           <label className="text">Date:</label>
           <br />
 
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              label="Choose Date"
-              value={date}
-              disabled={isDisable}
-              onChange={(newDate) => setDate(newDate)}
-            />
-          </LocalizationProvider>
 
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={["TimePicker", "TimePicker"]}>
-              <TimePicker
-                label="Choose Hours"
-                disabled={isDisable}
-                value={value}
-                onChange={(newValue) => dispatch(setValue(newValue))}
-              />
-            </DemoContainer>
-          </LocalizationProvider>
-
+          <LocalizationProvider dateAdapter={AdapterDayjs}  >
+          <StaticDateTimePicker orientation="landscape" value={value}  onChange={(newValue) => dispatch(setValue(newValue))}/>
+        </LocalizationProvider>
         </div>
 
         <div className="form-container" id="form-container">
