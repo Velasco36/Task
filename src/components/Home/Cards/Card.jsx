@@ -12,20 +12,45 @@ import clientAxios from "../../../config/axios";
 
 export const Card = ({ title, body, color, id, state, date  }) => {
   const dispatch = useDispatch()
+
+  const token = localStorage.getItem("token");
   const fechaFormateada = dayjs(date).format('YYYY-MM HH:mm');
   console.log(fechaFormateada)
-  const token = localStorage.getItem("token");
 
   const hableEdit = async () => {
     dispatch(Id_task(id))
-
-
   }
+  const handleAnchorClick = async () => {
+    setanchor((prevAnchor) => {
+      return prevAnchor === "pending" ? "anchored" : "pending";
+    });
+
+    const data = {
+      state: anchor
+    }
+
+    try {
+      const response = await clientAxios.put(`tasks/${id}`, data, { headers: { Authorization: `Bearer ${token}` }, });
+      console.log(response)
+      Swal.fire({
+        title: 'Alert!',
+        text: 'Se ha fijado correctamente',
+        icon: 'success',
+        // confirmButtonText: 'success'
+      })
+      setTimeout(() => {
+        window.location.replace("/");
+      }, 1000);
+
+      console.log('Eliminado correctamente');
+    } catch (e) {
+      console.error("Error al obtener los datos:", e);
+    }
+  };
+
   const handleDeleteClick = async () => {
     try {
-      const response = await clientAxios.delete(`tasks/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await clientAxios.delete(`tasks/${id}`, { headers: { Authorization: `Bearer ${token}`},});
       console.log(response)
 
       Swal.fire({
@@ -53,7 +78,7 @@ export const Card = ({ title, body, color, id, state, date  }) => {
         <br />
         <p className="date">Date: {fechaFormateada}</p>
         <div className="right " >
-          <AnchorIcon  style={{ color : state==='anchored' ? 'red' : 'white' }}  />
+          <AnchorIcon  onClick={handleAnchorClick} style={{ color : state==='anchored' ? 'red' : 'white' }}  />
         </div>
       </div>
       <div className="input-container">
@@ -79,7 +104,7 @@ export const Card = ({ title, body, color, id, state, date  }) => {
         </div>
 
         <div className="input-container">
-          <Link to="/home" ><button className="add-card-btn" onClick={hableEdit}>edit</button></Link>
+          <Link to="/home"><button className="add-card-btn" onClick={hableEdit}>edit</button></Link>
         </div>
       </div>
 
