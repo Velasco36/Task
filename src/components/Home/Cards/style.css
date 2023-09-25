@@ -68,6 +68,13 @@
   margin: 0;
   margin-left: 10px;
 }
+.date {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+}
 
 .input-container {
   margin: 1rem;

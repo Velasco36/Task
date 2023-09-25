@@ -35,7 +35,15 @@ export default function ListCard() {
     <div className="grid-container">
       {tasks.length === 0 && <div className="empty-placeholder"></div>}
       {tasks.map((task, index) => (
-        <Card key={index} id={task.id} title={task.name} body={task.description} color={task.color} state={task.state}/>
+        <Card
+          key={index}
+          id={task.id}
+          title={task.name}
+          body={task.description}
+          color={task.color}
+          state={task.state}
+          date={task.limit_at}
+        />
       ))}
     </div>
   );

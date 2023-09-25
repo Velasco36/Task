@@ -1,4 +1,5 @@
 import React from "react";
+import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import AnchorIcon from "@mui/icons-material/Anchor";
 import Swal from 'sweetalert2/dist/sweetalert2.js'
@@ -9,9 +10,10 @@ import { useDispatch } from "react-redux";
 import { Id_task } from "../../../redux/actions";
 import clientAxios from "../../../config/axios";
 
-export const Card = ({ title, body, color, id, state }) => {
+export const Card = ({ title, body, color, id, state, date  }) => {
   const dispatch = useDispatch()
-
+  const fechaFormateada = dayjs(date).format('YYYY-MM HH:mm');
+  console.log(fechaFormateada)
   const token = localStorage.getItem("token");
 
   const hableEdit = async () => {
@@ -48,6 +50,8 @@ export const Card = ({ title, body, color, id, state }) => {
           <DeleteOutlineIcon style={{color: 'white'}} onClick={handleDeleteClick} />
         </div>
         <p className="text">Add Task</p>
+        <br />
+        <p className="date">Date: {fechaFormateada}</p>
         <div className="right " >
           <AnchorIcon  style={{ color : state==='anchored' ? 'red' : 'white' }}  />
         </div>
