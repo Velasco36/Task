@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import AnchorIcon from "@mui/icons-material/Anchor";
@@ -16,7 +17,7 @@ export const Card = ({ title, body, color, id, state, date  }) => {
   const token = localStorage.getItem("token");
   const fechaFormateada = dayjs(date).format('YYYY-MM HH:mm');
   console.log(fechaFormateada)
-
+  const [anchor, setanchor] = useState(state === 'pending' ? 'anchored' : 'pending');
   const hableEdit = async () => {
     dispatch(Id_task(id))
   }
@@ -33,7 +34,7 @@ export const Card = ({ title, body, color, id, state, date  }) => {
       const response = await clientAxios.put(`tasks/${id}`, data, { headers: { Authorization: `Bearer ${token}` }, });
       console.log(response)
       Swal.fire({
-        title: 'Alert!',
+        title: 'Anchored!',
         text: 'Se ha fijado correctamente',
         icon: 'success',
         // confirmButtonText: 'success'
