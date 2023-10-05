@@ -2,7 +2,7 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import React from "react";
-import AddTask from "./components/AddTask/AddTask";
+import AddTask from "./components/AddTask/index";
 import { Task } from "./components/Home";
 import { Login } from "./components/Login/index.jsx";
 import { Register } from "./components/Register/index";
