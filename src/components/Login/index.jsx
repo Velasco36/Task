@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import clientAxios from "../../config/axios";
-
-
-import "./index.css";
+import "./style.css";
 
 export function Login() {
   const [nickName, setNickName] = useState("");
   const [password, setPassword] = useState("");
   const [load, setLoad] = useState(false);
 
-
   const handleSubmit = async () => {
-   
     if (nickName === "" || password === "") {
       alert("Por favor complete los campos requeridos.");
       return;
@@ -48,7 +44,6 @@ export function Login() {
             <div className="form-group">
               <br />
               <br />
-
               <input
                 type="text"
                 placeholder="example@correo.com"
@@ -75,7 +70,6 @@ export function Login() {
                 <span className="loader"></span>
               </div>
             )}
-
             <br />
             <button onClick={handleSubmit}>Iniciar sesión</button>
           </div>
