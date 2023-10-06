@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import "./index.css";
+import "./style.css";
 import clientAxios from "../../config/axios";
 
 export function Register() {
   const [nickname, setNickName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatpassword] = useState("");
-
+  const [load, setLoad] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -15,6 +14,7 @@ export function Register() {
       alert("Por favor complete los campos requeridos.");
       return;
     }
+    setLoad(true);
     try {
       const response = await clientAxios.post("user", {
         email,
@@ -53,7 +53,6 @@ export function Register() {
             />
             <span className="floating-label">Name</span>
           </div>
-
           <div className=" input-container">
             <input
               type="email"
@@ -76,17 +75,12 @@ export function Register() {
             />
             <span className="floating-label">Password</span>
           </div>
-          <div className="input-container">
-            <input
-              type="password"
-              id="repeatPassword"
-              placeholder=""
-              name="repeatPassword"
-              value={repeatPassword}
-              onChange={(e) => setRepeatpassword(e.target.value)}
-            />
-            <span className="floating-label">Repeat Password</span>
-          </div>
+          {load && (
+              <div className="containerloader">
+                <span className="loader"></span>
+              </div>
+            )}
+
           <button onClick={handleSubmit}>Registrarse</button>
           <p>
               Already have an account?
