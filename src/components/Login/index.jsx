@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import clientAxios from "../../config/axios";
 import "./style.css";
-
+import Swal from "sweetalert2/dist/sweetalert2.js";
 export function Login() {
   const [nickName, setNickName] = useState("");
   const [password, setPassword] = useState("");
@@ -13,24 +13,41 @@ export function Login() {
       return;
     }
     setLoad(true);
-    const data = {nick_name: nickName, password}
+    const data = { nick_name: nickName, password };
     try {
-
-      const response = await clientAxios.post("login",data);
+      const response = await clientAxios.post("login", data);
 
       if (response.data) {
-        const token = response.data.token;
-        window.localStorage.setItem("token", token);
+        const token = response.data.data.token;
+        if (token === undefined) {
+          Swal.fire({
+            title: "Alert!",
+            text: "usuario o contraseña invalidas",
+            icon: "error",
+            confirmButtonText: "success",
+          });
+          setPassword("");
 
-        setTimeout(() => {
-          window.location.replace("/");
-        }, 3000);
-        console.log(response.data.token);
+          setLoad(false);
+        } else {
+          window.localStorage.setItem("token", token);
+          setTimeout(() => {
+            window.location.replace("/");
+          }, 3000);
+          console.log(response.data.data.token);
+        }
       }
     } catch (e) {
-      console.log(e);
+      if (e.message === "Network Error") {
+        Swal.fire({
+          title: "Alert!",
+          text: "Error de conexion",
+          icon: "error",
+          confirmButtonText: "cancel",
+        });
+        setLoad(false);
+      }
     }
-
   };
 
   return (
@@ -80,9 +97,9 @@ export function Login() {
             <button>Iniciar sesión con Facebook</button>
           </div>
           <p className="link">
-              No tienes cuenta?
-              <a href="/register">registrate aqui</a>
-            </p>
+            No tienes cuenta?
+            <a href="/register">registrate aqui</a>
+          </p>
         </div>
       </div>
     </div>
