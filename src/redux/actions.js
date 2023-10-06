@@ -11,9 +11,16 @@ import {
     SET_CARDS_ACTION,
     ADD_TASK_ACTION,
     ID_TASK_ACTION,
-    ANCHOR_TASK_ACTION
+    ANCHOR_TASK_ACTION,
+    USER_NAME_ACTION
  } from "./actionTypes";
 
+ export const user_name = (nick_name) => {
+    return {
+        type: USER_NAME_ACTION,
+        payload: nick_name
+    }
+}
  export const anchor_task = (state) => {
     return {
         type: ANCHOR_TASK_ACTION,

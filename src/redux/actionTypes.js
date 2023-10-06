@@ -11,6 +11,7 @@ export const SET_CARDS_ACTION = 'SET_CARDS';
 export const ADD_TASK_ACTION = 'ADD_TASK';
 export const ID_TASK_ACTION = 'ID_TASK';
 export const ANCHOR_TASK_ACTION = 'ANCHOR_TASK';
+export const USER_NAME_ACTION = 'USER_NAME';
 
 
 

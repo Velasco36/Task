@@ -13,7 +13,9 @@ import {
     SET_CARDS_ACTION,
     ADD_TASK_ACTION,
     ID_TASK_ACTION,
-    ANCHOR_TASK_ACTION
+    ANCHOR_TASK_ACTION,
+    USER_NAME_ACTION
+
 
     } from "./actionTypes";
 
@@ -30,12 +32,18 @@ const initialState = {
     isVisible: true,
     tasks: [],
     Id_task: "",
-    anchor: "pending"
+    anchor: "pending",
+    user: ""
 }
 
 export const reducer = (state = initialState, { type, payload }) => {
     switch (type){
 
+        case USER_NAME_ACTION:
+            return {
+                ...state,
+                nick_name: payload
+            }
         case ANCHOR_TASK_ACTION:
             return {
                 ...state,
