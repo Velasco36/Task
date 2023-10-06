@@ -39,7 +39,7 @@ export const reducer = (state = initialState, { type, payload }) => {
         case ANCHOR_TASK_ACTION:
             return {
                 ...state,
-                state: payload
+                states: payload
             }
 
         case ID_TASK_ACTION:
