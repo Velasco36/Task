@@ -7,7 +7,7 @@ import { Task } from "./components/Home";
 import { Login } from "./components/Login/index.jsx";
 import { Register } from "./components/Register/index";
 import { isAuthenticated } from "./auth";
-
+import { ChangePassword } from "./components/ChangePassword";
 
 function App() {
 
@@ -16,6 +16,7 @@ function App() {
     <Routes>
       <Route path="/" element={isAuthenticated() ? <Task /> : <Login /> } />
       <Route path="/home" element={isAuthenticated() ? <AddTask /> : <Login />}  />
+      <Route path="/change" element={isAuthenticated() ? <ChangePassword /> : <Login />}  />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
     </Routes>
