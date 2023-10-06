@@ -5,14 +5,14 @@ import { CardForm } from "./cardForm";
 import AnchorIcon from "@mui/icons-material/Anchor";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import "./style.css";
-import { putTask } from "../../api/putTask";
-import { deleteTask } from "../../api/deleteTask";
+import { putTask } from "../../api/Task/putTask";
+import { deleteTask } from "../../api/Task/deleteTask";
 
 export const Card = ({ title, body, color, id, state, date }) => {
   const [cardTitle, setCardTitle] = useState(title);
   const [cardDescriptions, setDescriptions] = useState(body);
   const fechaFormateada = dayjs(date).format("YYYY-MM HH:mm");
-  
+
   const [anchor, setAnchor] = useState(
     state === "pending" ? "anchored" : "pending"
   );
