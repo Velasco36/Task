@@ -1,113 +1,49 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import clientAxios from "../../../config/axios";
 import { useSelector, useDispatch } from "react-redux";
 import { AccessAlarm } from "@mui/icons-material";
-import AnchorOutlinedIcon from "@mui/icons-material/AnchorOutlined";
 import { Notification } from "../../Notification/Notification";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { StaticDateTimePicker } from '@mui/x-date-pickers/StaticDateTimePicker';
-
-import {
-  addColor,
-  addNotification,
-  isClosed,
-  setIsDisable,
-  setValue,
-  addTask,
-  anchor_task
-
-} from "../../../redux/actions";
+import { Sidebar } from "../date/sidebar";
+import { addNotification, setIsDisable, addTask } from "../../../redux/actions";
+import { IconsAnchor } from "./../icons/anchor";
 import { Card } from "./card";
 import "./style.css";
-
 export function CardDesing() {
-
   const dispatch = useDispatch();
   const title = useSelector((state) => state.title);
   const description = useSelector((state) => state.description);
   const notification = useSelector((state) => state.notification);
   const color = useSelector((state) => state.color);
-  const isOpen = useSelector((state) => state.isOpen);
   const value = useSelector((state) => state.value);
   const isDisable = useSelector((state) => state.isDisable);
-  const ID_task = useSelector((state) => state.id);
+  const anchor = useSelector((state) => state.states);
   const [load, setLoad] = useState(false);
-  const [anchor, setanchor] = useState('pending');
   const token = localStorage.getItem("token");
-  dispatch(anchor_task(anchor));
-  const fechaFormateada = value.format('YYYY-MM-DDTHH:mm:ss.SSSZ');
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (ID_task !== "") {
-        try {
-          const response = await clientAxios.get(`tasks/${ID_task}`, {
-            headers: { Authorization: `Bearer ${token}` },
-          });
-
-          const data = response.data;
-          console.log(data);
-        } catch (error) {
-          console.error("Error al obtener los datos:", error);
-        }
-
-      }else{
-        return
-      }
-    };
-
-    fetchData();
-  },);
+  const fechaFormateada = value.format("YYYY-MM-DDTHH:mm:ss.SSSZ");
 
   const handleNotificationClose = () => {
     dispatch(addNotification(null));
   };
-  const handlePinup = () => {
-    if (anchor === "pending"){
-      dispatch(
-        addNotification({
-          type: "success",
-          message: "Se ha Fijado  correctamente anchor",
-        })
-      );
-      setanchor('anchored')
-    }else{
-        dispatch(
-          addNotification({
-            type: "success",
-            message: `Se ha desAnclado correctamente pending ${anchor}`,
-          })
-        );
+  const [showButton, setshowButton] = useState(true)
 
-        setanchor('pending')
-    }
-  };
   const handleDate = () => {
     dispatch(addNotification({ type: "success", message: "Añade una fecha" }));
     dispatch(setIsDisable(!isDisable));
-  };
-  const handleChangeColor = (e) => {
-    const formBody = document.querySelector("#form-container");
-    if (formBody) {
-      formBody.style.backgroundColor = e.target.value;
-    }
-    dispatch(addColor(e.target.value));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (title === "" || description === "") {
-      dispatch(addNotification({ type: "error", message: "Por favor complete los campos requeridos" }));
+      dispatch(
+        addNotification({
+          type: "error",
+          message: "Por favor complete los campos requeridos",
+        })
+      );
       return;
     }
-    setTimeout(() => {
-      window.location.replace("/");
-    }, 3000);
-    dispatch(addNotification({ type: "success", message: "se ha agregado correctamente" }));
 
     const task = { title, description };
-
     const data = {
       name: title,
       description: description,
@@ -117,12 +53,23 @@ export function CardDesing() {
     };
 
     setLoad(true);
+    setshowButton(false)
     try {
       const response = await clientAxios.post("tasks", data, {
         headers: { Authorization: `Bearer ${token}` },
       });
+      setTimeout(() => {
+        window.location.replace("/");
+      }, 3000);
+      dispatch(
+        addNotification({
+          type: "success",
+          message: "se ha agregado correctamente",
+        })
+      );
 
-      console.log(response.data);
+      console.log(response)
+
     } catch (e) {
       console.error("Error al obtener los datos:", e);
     }
@@ -138,67 +85,26 @@ export function CardDesing() {
           onClose={handleNotificationClose}
         />
       )}
-
       <div className="container">
-        <div className="modal" id="aling-modal">
-          <label className="text">Color:</label>
-          <input
-            type="color"
-            id="colorPicker"
-            value={color}
-            onChange={handleChangeColor}
-          />
-          <label className="text">Date:</label>
-          <br />
-
-
-          <LocalizationProvider dateAdapter={AdapterDayjs}  >
-          <StaticDateTimePicker orientation="landscape" value={value}  onChange={(newValue) => dispatch(setValue(newValue))}/>
-        </LocalizationProvider>
-        </div>
-
+        <Sidebar color={color} />
         <div className="form-container" id="form-container">
           <br />
           <br />
           <div className="icon-container" id="color">
-            <AccessAlarm style={{ color: 'white'}} onClick={() => handleDate()} />
-            <p id="text">Add Task</p>
-            <AnchorOutlinedIcon
-               style={{ color : anchor==='anchored' ? 'red' : 'white' }}
-              className="right-icon"
-              onClick={() => handlePinup()}
+            <AccessAlarm
+              style={{ color: "white" }}
+              onClick={() => handleDate()}
             />
+            <IconsAnchor anchor={anchor} />
           </div>
           <br />
-
           <Card
             handleSubmit={handleSubmit}
-            showButton={true}
+            showButton={showButton}
             setLoad={false}
             load={load}
           />
         </div>
-
-        {isOpen && (
-          <div className="modal">
-            <div className="overlay">
-              <div className="modal-content">
-                <input
-                  type="color"
-                  id="colorPicker"
-                  value={color}
-                  onChange={handleChangeColor}
-                />
-                <br />
-
-                <button onClick={() => dispatch(isClosed(false))}>
-                  Cerrar
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </>
-  );
-}
+  );}
