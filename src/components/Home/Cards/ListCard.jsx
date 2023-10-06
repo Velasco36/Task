@@ -16,8 +16,8 @@ export default function ListCard() {
           });
           const tasksData = response.data.data.tasks;
 
-          tasksData.sort((a, b) => {
-            return a.state === "anchored" && b.state !== "anchored" ? -1 : 1;
+          tasksData.sort((task, b) => {
+            return task.state === "anchored" && b.state !== "anchored" ? -1 : 1;
           });
 
           setTasks(tasksData);
