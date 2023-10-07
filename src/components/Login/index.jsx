@@ -34,7 +34,6 @@ export function Login() {
           setTimeout(() => {
             window.location.replace("/");
           }, 3000);
-          console.log(response.data.data.token);
         }
       }
     } catch (e) {
@@ -46,7 +45,17 @@ export function Login() {
           confirmButtonText: "cancel",
         });
         setLoad(false);
+      }else if( e.message ==="Request failed with status code 404"){
+        Swal.fire({
+          title: "Alert!",
+          text: "El Usuario no Existe",
+          icon: "error",
+          confirmButtonText: "cancel",
+        });
+        setLoad(false);
+        setPassword('')
       }
+
     }
   };
 
