@@ -1,0 +1,119 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  min-height: 70vh; /* Altura mínima a 70vh */
+  max-height: 70vh; /* Altura máxima a 70vh */
+  padding: 3%;
+  overflow-y: auto; /* Habilitar scroll vertical cuando el contenido desborda */
+
+}
+
+/* Estilos para el placeholder cuando no hay cartas */
+.empty-placeholder {
+  width: 100%;
+  height: 70vh; /* Ajustar la altura del placeholder */
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+/* Estilos para las tarjetas */
+.card-container {
+  width: 100%; /* Ajustar el ancho al 100% */
+  overflow: hidden;
+  box-shadow: 0px 0px 15px -5px;
+  transition: 0.3s;
+  background-color: white;
+  min-height: 360px; /* Altura mínima para las cartas */
+  border-radius: 5px;
+  position: relative;
+}
+
+.card-container:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 15px 0px;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #1c03a8;
+}
+
+.left, .right {
+  margin-left: 25px;
+}
+
+.right.icons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Estilos específicos para los íconos, suponiendo que sean elementos <svg> o <img> */
+.left img {
+  width: 24px;
+  height: 24px;
+}
+
+.right.icons img {
+  width: 20px;
+  height: 20px;
+}
+
+#icons {
+  color: #fff !important;
+}
+.text {
+  margin: 0;
+  margin-left: 10px;
+}
+.date {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.input-container {
+  margin: 1rem;
+}
+
+.title,
+.description {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.floating-label {
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background-color: white;
+  padding: 0 5px;
+  font-size: 14px;
+}
+
+/* Resto de tus estilos ... */
+.card-container {
+  height: 300px;
+}
+
+.grid-container:not(:empty) .empty-placeholder {
+  display: none;
+}
+
+.add-card-btn {
+  width: 400px;
+  align-items: center;
+
+}
+
+.add-card-btn:hover {
+  background: linear-gradient(2deg, rgba(13, 4, 103, 0.9), rgba(65, 3, 120, 0.9));
+  color: rgb(245, 240, 240);
+}
+

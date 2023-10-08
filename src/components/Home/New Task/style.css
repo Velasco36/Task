@@ -1,0 +1,84 @@
+.button {
+  flex: 1;
+  margin-top: 50px;
+  width: 10%;
+  height: 50px;
+  border-radius: 40px;
+  cursor: pointer;
+  border: 0px;
+  background: linear-gradient(2deg, rgb(12, 8, 8), rgba(0, 0, 0, 1));
+  color: #fff;
+}
+
+.button-search {
+  flex: 1;
+  margin-top: 10%;
+  width: 40%;
+  height: 50px;
+  border-radius: 40px;
+  cursor: pointer;
+  border: 0px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #120a0a;
+}
+
+.input-search {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #000000;
+  width: 80%;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+}
+
+.title {
+  color: white;
+  text-align: center;
+  justify-content: center;
+
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 250px; /* Establece un ancho máximo para el contenedor del botón */
+  padding: 10px;
+}
+
+
+.logout {
+ justify-content: end;
+ margin-top: 45px;
+ margin-left: 100px;
+
+}
+
+.colorLogout {
+  color: #fff;
+  height: 40px;
+}
+
+
+.large-icon {
+  width: 2em; /* Ajusta el tamaño según tus preferencias */
+  height: 6em;
+  color: #fff;
+  cursor: pointer;
+}
